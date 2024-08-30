@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-function MovieCard({key,moviesObj,addWatch,remove,watchList}) {
+function MovieCard({moviesObj,addWatch,remove,watchList}) {
 
     function doesContain(moviesObj){
         for(let i=0;i<watchList.length;i++){
@@ -11,21 +11,27 @@ function MovieCard({key,moviesObj,addWatch,remove,watchList}) {
         }
         return false;
     }
- 
+
   return (
-    <div>
-    <div className='h-[40vh] w-[200px] bg-center bg-cover rounded-xl hover:scale-110 duration-300 cursor-pointer flex flex-col justify-end'
-    key={key} style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${moviesObj.backdrop_path})`}}>
-    <div className='flex justify-start'>
-        {doesContain(moviesObj)
-        ?(<div className=' m-2' onClick={() => remove(moviesObj)}><i className="fa-solid fa-trash fa-lg"></i></div>)
-        :(<div className=' m-2' onClick={() => addWatch(moviesObj)}><i className="fa-solid fa-basket-shopping fa-lg "></i></div>)}
-        
-    </div>
-    <div className='text-2xl font-bold text-center bg-slate-600 rounded-lg'>{moviesObj.title}</div>
-    
-    </div>
-    </div>
+    <>
+        <div className='hover:scale-110 duration-300 cursor-pointer'>
+            <div className='h-[40vh] w-[200px] bg-center bg-cover rounded-xl rounded-b-none  flex flex-col justify-end m-0'
+              style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${moviesObj.backdrop_path})`}}/>
+            <div className='text-black mt-0 p-2 bg-gray-400 w-[200px] rounded-xl rounded-t-none m-0'>
+                <p className='font-bold '>{moviesObj.title}</p>
+                <p>Rating: {Math.floor(moviesObj.vote_average)}</p>
+                <div className='flex gap-1 items-center'>
+                    {
+                        doesContain(moviesObj)?(<button onClick={()=>remove(moviesObj)} className='bg-red-600 rounded-md w-full'>Remove to WatchList </button>)
+                        :(<button onClick={()=>addWatch(moviesObj)} className='bg-gray-600 rounded-md w-full'>Add to WatchList </button>)
+                    }
+                    
+                    {/* <span className='ml-2'><WatchListIcon/></span> */}
+                </div>
+                
+            </div>
+        </div>
+    </>
   )
 }
 

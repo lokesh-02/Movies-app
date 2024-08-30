@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Pagination from './Pagination';
 import MovieCard from './MovieCard';
 import axios from'axios';
+import ShimmerEffect from './ShimmerEffect';
 function Movies() {
     const [movies, setMovies] = useState([]);
     const [pageNo, setPageNo] = useState(1);
     const [watchList, setWatchList] = useState([]);
-  
+    const [loading,setLoading]=useState(true);
     useEffect(()=>{
         const moviesFromLocalStorage=JSON.parse(localStorage.getItem('movies'));
         if(moviesFromLocalStorage){
@@ -24,7 +25,6 @@ function Movies() {
         const filteredWatchList=watchList.filter((movie)=>movie.id !== moviesObj.id)
         setWatchList(filteredWatchList) 
         localStorage.setItem('movies',JSON.stringify(filteredWatchList))
- 
     }
     console.log(watchList);
         
@@ -34,6 +34,7 @@ function Movies() {
             const moviesData=response.data.results;
             // console.log(moviesData);
             setMovies(moviesData)
+            setLoading(false)
         })     
     },[pageNo])
 
@@ -53,15 +54,18 @@ function Movies() {
         <div className='text-2xl font-bold text-center m-5 text-yellow-600'>
             <h1>Trending Movies</h1>
         </div>
-        <div className='flex flex-wrap justify-evenly gap-8'>
-            {movies.map((movie,idx)=>{
-                return(
-                    <MovieCard key={idx} moviesObj={movie} addWatch={addToWatchList} remove={removeFromWatchList} watchList={watchList}/>
-                )
-            })
-            }
-            
-        </div>
+        {
+            loading ? (<ShimmerEffect/>)
+            :(<div className='flex flex-wrap justify-evenly gap-8'>
+                {movies.map((movie,idx)=>{
+                    return(
+                        <MovieCard key={idx} moviesObj={movie} addWatch={addToWatchList} remove={removeFromWatchList} watchList={watchList}/>
+                    )
+                })
+                }
+            </div>)
+        }
+        
         <Pagination nextPageFn={handleNext} prevPageFn={handlePrevious} pageNumber={pageNo}/>
     </div>
   )
