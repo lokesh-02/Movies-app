@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      { "source": "/movies-watchlist", "destination": "/index.html" },
+      { "source": "/series-watchlist", "destination": "/index.html" },
+      { "source": "/series", "destination": "/index.html" },
+      { "source": "/(.*)", "destination": "/" }
+    ]
+}
