@@ -21,6 +21,8 @@ const SeriesCard = ({seriesObj,index,addtoWatch,removefromWatch,watch}) => {
             <div className='text-black mt-0 p-2 bg-gray-400 w-[200px] rounded-xl rounded-t-none m-0'>
                 <p className='font-bold '>{seriesObj.name}</p>
                 <p>Rating: {Math.floor(seriesObj.vote_average)}</p>
+                <p >Release Date: {seriesObj.release_date}</p>
+
                 <div className='flex gap-1 items-center'>
                     {
                         doesContain(seriesObj)?(<button onClick={()=>removefromWatch(seriesObj)} className='bg-red-600 rounded-md w-full'>Remove to WatchList </button>)

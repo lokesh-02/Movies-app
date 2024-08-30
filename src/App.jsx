@@ -6,6 +6,7 @@ import Home from './components/Home'
 import WatchList from './components/WatchList'
 import Series from './components/Series'
 import SeriesWatchlist from './components/SeriesWatchlist'
+import SearchResults from './pages/SearchResults'
 function App() {
 
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/series' element={<Series/>}></Route>
         <Route path='/movies-watchlist' element={<WatchList/>}></Route>
         <Route path='/series-watchlist' element={<SeriesWatchlist/>}></Route>
+        <Route path='/search' element={<SearchResults/>}></Route>
     </Routes>
     </>
   )

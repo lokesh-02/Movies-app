@@ -8,11 +8,10 @@ function Banner() {
   const [title,setTitle]=useState("");
   useEffect(()=>{
     axios.get('https://api.themoviedb.org/3/movie/popular?api_key=3fd18cf52ae8d3a13924e94167d3e374&language=en-US&page=1').then((response)=>{
-      console.log(response.data)
+      // console.log(response.data)
       const firstMovie=response.data.results[0];
       const firstMovieTitle=firstMovie.title;
       const firstMoviePoster=firstMovie.backdrop_path
-
       setTitle(firstMovieTitle);
       setbannerImage(`https://image.tmdb.org/t/p/original/${firstMoviePoster}`)
     })

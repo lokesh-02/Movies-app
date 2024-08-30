@@ -53,6 +53,9 @@ const Series = () => {
 
   return (
     <>
+    <div className='text-2xl font-bold text-4xl text-center m-5 text-yellow-600'>
+        <h1>Trending Series</h1>
+    </div>
     {
         loading ? (<ShimmerEffect/>)
         :(<div className='flex flex-wrap justify-evenly gap-8 m-10'>

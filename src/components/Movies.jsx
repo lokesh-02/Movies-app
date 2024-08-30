@@ -26,7 +26,7 @@ function Movies() {
         setWatchList(filteredWatchList) 
         localStorage.setItem('movies',JSON.stringify(filteredWatchList))
     }
-    console.log(watchList);
+    // console.log(watchList);
         
     useEffect(()=>{
         axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=3fd18cf52ae8d3a13924e94167d3e374&language=en-US&page=${pageNo}`)

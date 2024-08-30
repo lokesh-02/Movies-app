@@ -20,6 +20,8 @@ function MovieCard({moviesObj,addWatch,remove,watchList}) {
             <div className='text-black mt-0 p-2 bg-gray-400 w-[200px] rounded-xl rounded-t-none m-0'>
                 <p className='font-bold '>{moviesObj.title}</p>
                 <p>Rating: {Math.floor(moviesObj.vote_average)}</p>
+                <p >Release Date: {moviesObj.release_date}</p>
+
                 <div className='flex gap-1 items-center'>
                     {
                         doesContain(moviesObj)?(<button onClick={()=>remove(moviesObj)} className='bg-red-600 rounded-md w-full'>Remove to WatchList </button>)
